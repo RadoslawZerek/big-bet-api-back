@@ -1,5 +1,6 @@
 package com.radoslawzerek.bigbetbackend.entity;
 
+import com.radoslawzerek.bigbetbackend.enums.Winner;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
