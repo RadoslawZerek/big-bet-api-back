@@ -1,4 +1,4 @@
-package com.radoslawzerek.bigbetbackend.mapper;
+package com.radoslawzerek.bigbetbackend.api;
 
 import lombok.Getter;
 import org.springframework.stereotype.Component;
