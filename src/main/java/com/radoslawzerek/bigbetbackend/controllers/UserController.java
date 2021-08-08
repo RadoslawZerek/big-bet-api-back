@@ -32,18 +32,18 @@ public class UserController {
         this.mapper = mapper;
     }
 
-    @GetMapping("/users/{login}/{password}")
+    @GetMapping("/user/{login}/{password}")
     public LogInFeedback logUserIn(@PathVariable String login, @PathVariable String password) {
         return service.logUserIn(login, password);
     }
 
 
-    @PostMapping("/users")
+    @PostMapping("/user")
     public SignUpFeedback signUserUp(@RequestBody UserDto user) {
         return service.signUserUp(mapper.mapToUser(user));
     }
 
-    @GetMapping("/users/{userId}")
+    @GetMapping("/user/{userId}")
     public UserDto getUserById(@PathVariable Long userId) throws UserNotFoundException {
         return mapper.mapToUserDto(service.getUserById(userId));
     }
@@ -58,17 +58,17 @@ public class UserController {
         return mapper.mapToUserDto(service.updateUser(mapper.mapToUser(user)));
     }
 
-    @PatchMapping("/users/{userId}")
+    @PatchMapping("/user/{userId}")
     public UserDto updateUserPassword(@PathVariable Long userId, @RequestBody String newPassword) throws UserNotFoundException {
         return mapper.mapToUserDto(service.updateUserPassword(userId, newPassword));
     }
 
-    @GetMapping("/users/check/{login}")
+    @GetMapping("/user/check/{login}")
     public Boolean checkIfUserExists(@PathVariable String login) {
         return service.checkIfUserExists(login);
     }
 
-    @DeleteMapping("/users/{userId}")
+    @DeleteMapping("/user/{userId}")
     public void deleteUser(@PathVariable Long userId) {
         service.deleteUser(userId);
     }
