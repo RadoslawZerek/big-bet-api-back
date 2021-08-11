@@ -3,6 +3,7 @@ package com.radoslawzerek.bigbetbackend.controllers;
 import com.radoslawzerek.bigbetbackend.dto.BetProspectsRequestDto;
 import com.radoslawzerek.bigbetbackend.mapper.BetProspectsRequestMapper;
 import com.radoslawzerek.bigbetbackend.service.BetProspectsRequestService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,19 +13,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/v1/bigbet")
 @CrossOrigin(origins = "*")
 public class BetProspectsRequestController {
 
+    @Autowired
     private final BetProspectsRequestService service;
-    private final BetProspectsRequestMapper mapper;
 
     @Autowired
-    public BetProspectsRequestController(BetProspectsRequestService service, BetProspectsRequestMapper mapper) {
-        this.service = service;
-        this.mapper = mapper;
-    }
+    private final BetProspectsRequestMapper mapper;
 
     @GetMapping("/requests")
     public List<BetProspectsRequestDto> getAllBetProspectsRequests() {

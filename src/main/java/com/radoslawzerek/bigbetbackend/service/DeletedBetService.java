@@ -2,19 +2,18 @@ package com.radoslawzerek.bigbetbackend.service;
 
 import com.radoslawzerek.bigbetbackend.entity.DeletedBet;
 import com.radoslawzerek.bigbetbackend.repository.DeletedBetRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @Service
 public class DeletedBetService {
 
+    @Autowired
     private final DeletedBetRepository repository;
-
-
-    public DeletedBetService(DeletedBetRepository repository) {
-        this.repository = repository;
-    }
 
     public DeletedBet addDeletedBet(DeletedBet deletedBet) {
         return repository.save(deletedBet);

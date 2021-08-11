@@ -7,24 +7,24 @@ import com.radoslawzerek.bigbetbackend.exception.UserNotFoundException;
 import com.radoslawzerek.bigbetbackend.mapper.BetProspectsRequestMapper;
 import com.radoslawzerek.bigbetbackend.repository.BetProspectsRequestRepository;
 import com.radoslawzerek.bigbetbackend.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @Service
 public class BetProspectsRequestService {
 
+    @Autowired
     private final BetProspectsRequestRepository prospectsRequestRepository;
+
+    @Autowired
     private final BetProspectsRequestMapper prospectsRequestMapper;
+
+    @Autowired
     private final UserRepository userRepository;
-
-
-    public BetProspectsRequestService(BetProspectsRequestRepository prospectsRequestRepository,
-                                      BetProspectsRequestMapper prospectsRequestMapper, UserRepository userRepository) {
-        this.prospectsRequestRepository = prospectsRequestRepository;
-        this.prospectsRequestMapper = prospectsRequestMapper;
-        this.userRepository = userRepository;
-    }
 
     public BetProspectsRequest addBetProspectsRequest(BetProspectsRequestDto prospectsRequestDto) throws UserNotFoundException {
         User user = userRepository.findById(prospectsRequestDto.getUserId())

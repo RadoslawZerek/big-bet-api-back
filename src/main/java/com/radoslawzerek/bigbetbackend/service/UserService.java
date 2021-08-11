@@ -15,6 +15,7 @@ import com.radoslawzerek.bigbetbackend.repository.LogInAttemptRepository;
 import com.radoslawzerek.bigbetbackend.repository.UserBalanceChangeRepository;
 import com.radoslawzerek.bigbetbackend.repository.UserDataChangeRepository;
 import com.radoslawzerek.bigbetbackend.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,29 +23,30 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
 
+@RequiredArgsConstructor
 @Service
 public class UserService {
 
+    @Autowired
     private final UserRepository userRepository;
-    private final UserDataChangeRepository dataChangeRepository;
-    private final UserBalanceChangeRepository balanceChangeRepository;
-    private final LogInAttemptRepository logInAttemptRepository;
-    private final UserMapper mapper;
-    private final StrongPasswordEncryptor encryptor;
-    private final BetsReviewer betsReviewer;
 
     @Autowired
-    public UserService(UserRepository userRepository, UserDataChangeRepository dataChangeRepository,
-                       UserBalanceChangeRepository balanceChangeRepository, LogInAttemptRepository logInAttemptRepository,
-                       UserMapper mapper, StrongPasswordEncryptor encryptor, BetsReviewer betsReviewer) {
-        this.userRepository = userRepository;
-        this.dataChangeRepository = dataChangeRepository;
-        this.balanceChangeRepository = balanceChangeRepository;
-        this.logInAttemptRepository = logInAttemptRepository;
-        this.mapper = mapper;
-        this.encryptor = encryptor;
-        this.betsReviewer = betsReviewer;
-    }
+    private final UserDataChangeRepository dataChangeRepository;
+
+    @Autowired
+    private final UserBalanceChangeRepository balanceChangeRepository;
+
+    @Autowired
+    private final LogInAttemptRepository logInAttemptRepository;
+
+    @Autowired
+    private final UserMapper mapper;
+
+    @Autowired
+    private final StrongPasswordEncryptor encryptor;
+
+    @Autowired
+    private final BetsReviewer betsReviewer;
 
     public LogInFeedback logUserIn(String login, String password) {
 

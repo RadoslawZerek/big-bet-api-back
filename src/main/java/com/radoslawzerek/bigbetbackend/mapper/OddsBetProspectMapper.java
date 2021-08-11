@@ -4,6 +4,7 @@ import com.radoslawzerek.bigbetbackend.api.CompetitionsMap;
 import com.radoslawzerek.bigbetbackend.api.theoddsapi.OddsApiBetProspect;
 import com.radoslawzerek.bigbetbackend.api.theoddsapi.Site;
 import com.radoslawzerek.bigbetbackend.dto.BetProspectDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,16 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
 @Component
 public class OddsBetProspectMapper {
 
-    private final CompetitionsMap competitionsMap;
-
     @Autowired
-    public OddsBetProspectMapper(CompetitionsMap competitionsMap) {
-        this.competitionsMap = competitionsMap;
-    }
-
+    private final CompetitionsMap competitionsMap;
 
     public BetProspectDto mapFromOddsToBetProspectDto(OddsApiBetProspect oddsApiBetProspect) {
         Integer sport_key = null;

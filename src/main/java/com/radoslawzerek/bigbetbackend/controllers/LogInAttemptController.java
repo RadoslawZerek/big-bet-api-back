@@ -3,6 +3,7 @@ package com.radoslawzerek.bigbetbackend.controllers;
 import com.radoslawzerek.bigbetbackend.dto.LogInAttemptDto;
 import com.radoslawzerek.bigbetbackend.mapper.LogInAttemptMapper;
 import com.radoslawzerek.bigbetbackend.service.LogInAttemptService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,19 +13,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/v1/bigbet")
 @CrossOrigin(origins = "*")
 public class LogInAttemptController {
 
+    @Autowired
     private final LogInAttemptService service;
-    private final LogInAttemptMapper mapper;
 
     @Autowired
-    public LogInAttemptController(LogInAttemptService service, LogInAttemptMapper mapper) {
-        this.service = service;
-        this.mapper = mapper;
-    }
+    private final LogInAttemptMapper mapper;
 
     @GetMapping("/login_attampts")
     public List<LogInAttemptDto> getLoginAttempts() {

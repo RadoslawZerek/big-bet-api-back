@@ -3,7 +3,6 @@ package com.radoslawzerek.bigbetbackend.apis.theoddsapi;
 import com.radoslawzerek.bigbetbackend.api.theoddsapi.OddsApiBetProspect;
 import com.radoslawzerek.bigbetbackend.api.theoddsapi.TheOddsApiClient;
 import com.radoslawzerek.bigbetbackend.api.theoddsapi.config.TheOddsApiConfig;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,15 +23,12 @@ public class TheOddsApiClientTestSuite {
     @Autowired
     TheOddsApiConfig apiConfig;
 
-    @Disabled
     @Test
     public void testGetCurrentOddsProspectDtosFrom() {
-
         //Given
-        //When
-        List<OddsApiBetProspect> prospectList = apiClient.getCurrentOddsProspectFrom(apiConfig.getLaLigaKey());
 
-        //Then
+        //When & Then
+        List<OddsApiBetProspect> prospectList = apiClient.getCurrentOddsProspectFrom(apiConfig.getLaLigaKey());
         assertNotEquals(0, prospectList.size());
     }
 }

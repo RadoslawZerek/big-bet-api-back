@@ -3,6 +3,7 @@ package com.radoslawzerek.bigbetbackend.controllers;
 import com.radoslawzerek.bigbetbackend.dto.DeletedBetDto;
 import com.radoslawzerek.bigbetbackend.mapper.DeletedBetMapper;
 import com.radoslawzerek.bigbetbackend.service.DeletedBetService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,19 +13,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/v1/bigbet")
 @CrossOrigin(origins = "*")
 public class DeletedBetController {
 
+    @Autowired
     private final DeletedBetService service;
-    private final DeletedBetMapper mapper;
 
     @Autowired
-    public DeletedBetController(DeletedBetService service, DeletedBetMapper mapper) {
-        this.service = service;
-        this.mapper = mapper;
-    }
+    private final DeletedBetMapper mapper;
 
     @GetMapping("/deleted_bets")
     public List<DeletedBetDto> getAllDeletedBets() {

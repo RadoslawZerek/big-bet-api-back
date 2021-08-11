@@ -4,6 +4,7 @@ import com.radoslawzerek.bigbetbackend.dto.BetDto;
 import com.radoslawzerek.bigbetbackend.dto.BetDtoList;
 import com.radoslawzerek.bigbetbackend.mapper.BetMapper;
 import com.radoslawzerek.bigbetbackend.service.BetService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,19 +17,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/v1/bigbet")
 @CrossOrigin(origins = "*")
 public class BetController {
 
+    @Autowired
     private final BetService service;
-    private final BetMapper mapper;
 
     @Autowired
-    public BetController(BetService service, BetMapper mapper) {
-        this.service = service;
-        this.mapper = mapper;
-    }
+    private final BetMapper mapper;
 
     @GetMapping("/allBets")
     public BetDtoList getAllBets() {

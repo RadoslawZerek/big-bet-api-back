@@ -7,6 +7,7 @@ import com.radoslawzerek.bigbetbackend.pojo.LogInFeedback;
 import com.radoslawzerek.bigbetbackend.pojo.SignUpFeedback;
 import com.radoslawzerek.bigbetbackend.service.UserService;
 import com.radoslawzerek.bigbetbackend.exception.UserNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,23 +15,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/v1/bigbet")
 @CrossOrigin(origins = "*")
 public class UserController {
-    private final UserService service;
-    private final UserMapper mapper;
 
     @Autowired
-    public UserController(UserService service, UserMapper mapper) {
-        this.service = service;
-        this.mapper = mapper;
-    }
+    private final UserService service;
+
+    @Autowired
+    private final UserMapper mapper;
 
     @GetMapping("/user/{login}/{password}")
     public LogInFeedback logUserIn(@PathVariable String login, @PathVariable String password) {

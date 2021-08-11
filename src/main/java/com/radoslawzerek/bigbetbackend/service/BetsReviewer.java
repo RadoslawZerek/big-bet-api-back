@@ -10,6 +10,7 @@ import com.radoslawzerek.bigbetbackend.pojo.Mail;
 import com.radoslawzerek.bigbetbackend.repository.BetRepository;
 import com.radoslawzerek.bigbetbackend.repository.UserBalanceChangeRepository;
 import com.radoslawzerek.bigbetbackend.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Service;
@@ -24,30 +25,30 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
 @EnableAspectJAutoProxy
 @Service
 public class BetsReviewer {
 
+    @Autowired
     private final BetRepository betRepository;
-    private final UserRepository userRepository;
-    private final UserBalanceChangeRepository changeRepository;
-    private final FootballDataClient dataClient;
-    private final SimpleEmailService emailService;
-    private final TeamsMap teamsMap;
-    private final ChronoUnit minutes = ChronoUnit.MINUTES;
-
 
     @Autowired
-    public BetsReviewer(BetRepository betRepository, UserRepository userRepository,
-                        UserBalanceChangeRepository changeRepository, FootballDataClient dataClient,
-                        SimpleEmailService emailService, TeamsMap teamsMap) {
-        this.betRepository = betRepository;
-        this.userRepository = userRepository;
-        this.changeRepository = changeRepository;
-        this.dataClient = dataClient;
-        this.emailService = emailService;
-        this.teamsMap = teamsMap;
-    }
+    private final UserRepository userRepository;
+
+    @Autowired
+    private final UserBalanceChangeRepository changeRepository;
+
+    @Autowired
+    private final FootballDataClient dataClient;
+
+    @Autowired
+    private final SimpleEmailService emailService;
+
+    @Autowired
+    private final TeamsMap teamsMap;
+
+    private final ChronoUnit minutes = ChronoUnit.MINUTES;
 
     public void updateBetsStatus(Long userId) {
         List<Bet> pendingBets = betRepository.getPendingBetsOfUser(userId);

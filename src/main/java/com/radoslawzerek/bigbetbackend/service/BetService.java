@@ -8,30 +8,31 @@ import com.radoslawzerek.bigbetbackend.repository.BetRepository;
 import com.radoslawzerek.bigbetbackend.repository.DeletedBetRepository;
 import com.radoslawzerek.bigbetbackend.repository.UserBalanceChangeRepository;
 import com.radoslawzerek.bigbetbackend.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
 
+@RequiredArgsConstructor
 @Service
 public class BetService {
-    private final BetRepository betRepository;
-    private final UserRepository userRepository;
-    private final UserBalanceChangeRepository balanceChangeRepository;
-    private final DeletedBetRepository deletedBetRepository;
-    private final BetsReviewer betsReviewer;
 
     @Autowired
-    public BetService(BetRepository betRepository, UserRepository userRepository,
-                      UserBalanceChangeRepository balanceChangeRepository,
-                      DeletedBetRepository deletedBetRepository, BetsReviewer betsReviewer) {
-        this.betRepository = betRepository;
-        this.userRepository = userRepository;
-        this.balanceChangeRepository = balanceChangeRepository;
-        this.deletedBetRepository = deletedBetRepository;
-        this.betsReviewer = betsReviewer;
-    }
+    private final BetRepository betRepository;
+
+    @Autowired
+    private final UserRepository userRepository;
+
+    @Autowired
+    private final UserBalanceChangeRepository balanceChangeRepository;
+
+    @Autowired
+    private final DeletedBetRepository deletedBetRepository;
+
+    @Autowired
+    private final BetsReviewer betsReviewer;
 
     public void addBet(Bet bet) {
         BigDecimal oldBalance = userRepository.findById(bet.getUser().getId()).get().getBalance();

@@ -3,6 +3,7 @@ package com.radoslawzerek.bigbetbackend.api.footballdata;
 import com.radoslawzerek.bigbetbackend.api.footballdata.config.FootballDataApiConfig;
 import com.radoslawzerek.bigbetbackend.entity.Bet;
 import com.radoslawzerek.bigbetbackend.entity.BetProspect;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,18 +22,17 @@ import java.util.List;
 
 import static java.util.Optional.ofNullable;
 
+@RequiredArgsConstructor
 @Component
 public class FootballDataClient {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FootballDataClient.class);
-    private final FootballDataApiConfig dataApiConfig;
-    private final RestTemplate restTemplate;
 
     @Autowired
-    public FootballDataClient(FootballDataApiConfig dataApiConfig, RestTemplate restTemplate) {
-        this.dataApiConfig = dataApiConfig;
-        this.restTemplate = restTemplate;
-    }
+    private final FootballDataApiConfig dataApiConfig;
+
+    @Autowired
+    private final RestTemplate restTemplate;
 
     public List<Match> getDailyMatchesResults(Bet bet) {
 

@@ -8,7 +8,6 @@ import com.radoslawzerek.bigbetbackend.entity.BetProspect;
 import com.radoslawzerek.bigbetbackend.entity.User;
 import com.radoslawzerek.bigbetbackend.enums.Role;
 import com.radoslawzerek.bigbetbackend.enums.Winner;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +33,6 @@ public class FootballDataClientTestSuite {
     @Autowired
     TeamsMap teamsMap;
 
-    @Disabled
     @Test
     public void testGetDailyMatchesResults() {
        //Given

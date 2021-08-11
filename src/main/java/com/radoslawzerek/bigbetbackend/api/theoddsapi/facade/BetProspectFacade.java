@@ -6,6 +6,7 @@ import com.radoslawzerek.bigbetbackend.dto.BetProspectDto;
 import com.radoslawzerek.bigbetbackend.dto.BetProspectsRequestDto;
 import com.radoslawzerek.bigbetbackend.api.LeaguesMap;
 import com.radoslawzerek.bigbetbackend.mapper.OddsBetProspectMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,20 +16,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
 @Service
 public class BetProspectFacade {
 
+    @Autowired
     private final TheOddsApiClient oddsApiClient;
-    private final OddsBetProspectMapper mapper;
-    private final LeaguesMap leaguesMap;
 
     @Autowired
-    public BetProspectFacade(TheOddsApiClient oddsApiClient, OddsBetProspectMapper mapper,
-                             LeaguesMap leaguesMap) {
-        this.oddsApiClient = oddsApiClient;
-        this.mapper = mapper;
-        this.leaguesMap = leaguesMap;
-    }
+    private final OddsBetProspectMapper mapper;
+
+    @Autowired
+    private final LeaguesMap leaguesMap;
+
 
     public List<BetProspectDto> getCurrentBetProspectDtoList(BetProspectsRequestDto prospectsRequestDto) {
         List<OddsApiBetProspect> prospectList = new ArrayList<>();

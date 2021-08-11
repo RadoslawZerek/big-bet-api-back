@@ -2,6 +2,7 @@ package com.radoslawzerek.bigbetbackend.dto;
 
 import com.radoslawzerek.bigbetbackend.enums.Winner;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Setter
 @Getter
+@Builder
 public class BetDto {
 
     private Long id;

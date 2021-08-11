@@ -5,6 +5,7 @@ import com.radoslawzerek.bigbetbackend.dto.UserDataChangeDto;
 import com.radoslawzerek.bigbetbackend.mapper.UserBalanceChangeMapper;
 import com.radoslawzerek.bigbetbackend.mapper.UserDataChangeMapper;
 import com.radoslawzerek.bigbetbackend.service.UserChangeService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,22 +15,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/v1/bigbet")
 @CrossOrigin(origins = "*")
 public class UserChangeController {
 
+    @Autowired
     private final UserChangeService service;
-    private final UserDataChangeMapper dataChangeMapper;
-    private final UserBalanceChangeMapper balanceChangeMapper;
 
     @Autowired
-    public UserChangeController(UserChangeService service, UserDataChangeMapper dataChangeMapper,
-                                UserBalanceChangeMapper balanceChangeMapper) {
-        this.service = service;
-        this.dataChangeMapper = dataChangeMapper;
-        this.balanceChangeMapper = balanceChangeMapper;
-    }
+    private final UserDataChangeMapper dataChangeMapper;
+
+    @Autowired
+    private final UserBalanceChangeMapper balanceChangeMapper;
 
     @GetMapping("/user_data_changes")
     public List<UserDataChangeDto> getAllUsersDataChanges() {

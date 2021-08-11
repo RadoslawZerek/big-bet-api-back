@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
-
 @Service
 public class MailCreatorService {
 
@@ -15,6 +14,7 @@ public class MailCreatorService {
 
     @Qualifier("templateEngine")
     private final TemplateEngine templateEngine;
+
 
     @Autowired
     public MailCreatorService(AdminConfig adminConfig, TemplateEngine templateEngine) {
