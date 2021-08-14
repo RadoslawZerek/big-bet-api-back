@@ -2,7 +2,7 @@ package com.radoslawzerek.bigbetbackend.controllers;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.radoslawzerek.bigbetbackend.date.LocalDateAdapter;
+import com.radoslawzerek.bigbetbackend.dateadapter.LocalDateAdapter;
 import com.radoslawzerek.bigbetbackend.dto.UserDto;
 import com.radoslawzerek.bigbetbackend.entity.User;
 import com.radoslawzerek.bigbetbackend.enums.Role;

@@ -3,7 +3,7 @@ package com.radoslawzerek.bigbetbackend.controllers;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.radoslawzerek.bigbetbackend.api.theoddsapi.facade.BetProspectFacade;
-import com.radoslawzerek.bigbetbackend.date.LocalDateTimeAdapter;
+import com.radoslawzerek.bigbetbackend.dateadapter.LocalDateTimeAdapter;
 import com.radoslawzerek.bigbetbackend.dto.BetProspectDto;
 import com.radoslawzerek.bigbetbackend.dto.BetProspectsRequestDto;
 import com.radoslawzerek.bigbetbackend.service.BetProspectsRequestService;

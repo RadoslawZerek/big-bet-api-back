@@ -1,4 +1,4 @@
-package com.radoslawzerek.bigbetbackend.date;
+package com.radoslawzerek.bigbetbackend.dateadapter;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;

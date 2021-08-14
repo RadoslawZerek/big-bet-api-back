@@ -2,9 +2,9 @@ package com.radoslawzerek.bigbetbackend.controllers;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.radoslawzerek.bigbetbackend.date.LocalDateAdapter;
-import com.radoslawzerek.bigbetbackend.date.LocalDateTimeAdapter;
-import com.radoslawzerek.bigbetbackend.date.ZonedDateTimeAdapter;
+import com.radoslawzerek.bigbetbackend.dateadapter.LocalDateAdapter;
+import com.radoslawzerek.bigbetbackend.dateadapter.LocalDateTimeAdapter;
+import com.radoslawzerek.bigbetbackend.dateadapter.ZonedDateTimeAdapter;
 import com.radoslawzerek.bigbetbackend.dto.BetDto;
 import com.radoslawzerek.bigbetbackend.dto.BetProspectDto;
 import com.radoslawzerek.bigbetbackend.dto.UserDto;
