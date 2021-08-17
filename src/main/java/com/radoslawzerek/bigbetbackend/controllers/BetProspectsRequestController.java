@@ -1,6 +1,9 @@
 package com.radoslawzerek.bigbetbackend.controllers;
 
+import com.radoslawzerek.bigbetbackend.api.footballdata.FootballDataClient;
+import com.radoslawzerek.bigbetbackend.api.footballdata.Match;
 import com.radoslawzerek.bigbetbackend.dto.BetProspectsRequestDto;
+import com.radoslawzerek.bigbetbackend.entity.Bet;
 import com.radoslawzerek.bigbetbackend.mapper.BetProspectsRequestMapper;
 import com.radoslawzerek.bigbetbackend.service.BetProspectsRequestService;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +18,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/v1/bigbet")
+@RequestMapping("/v1")
 @CrossOrigin(origins = "*")
 public class BetProspectsRequestController {
 
@@ -30,7 +33,7 @@ public class BetProspectsRequestController {
         return mapper.mapToBetProspectsRequestDtoList(service.getAllBetProspectsRequests());
     }
 
-    @GetMapping("/bet_prospect_for_user/{userId}")
+    @GetMapping("/betprospectsrequests/{userId}")
     public List<BetProspectsRequestDto> getBetProspectsRequestsOfUser(@PathVariable Long userId) {
         return mapper.mapToBetProspectsRequestDtoList(service.getBetProspectsRequestsOfUser(userId));
     }

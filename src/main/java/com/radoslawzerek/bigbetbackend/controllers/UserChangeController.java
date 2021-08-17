@@ -17,7 +17,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/v1/bigbet")
+@RequestMapping("/v1")
 @CrossOrigin(origins = "*")
 public class UserChangeController {
 

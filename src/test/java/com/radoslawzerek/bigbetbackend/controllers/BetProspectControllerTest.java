@@ -90,7 +90,7 @@ public class BetProspectControllerTest {
         String jsonContent = gson.toJson(requestDto);
 
         //When & Then
-        mockMvc.perform(post("/v1/bigbet/prospects").contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(post("/v1/prospects").contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(jsonContent))
                 .andExpect(status().isOk())

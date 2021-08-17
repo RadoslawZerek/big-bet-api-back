@@ -32,8 +32,8 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -65,7 +65,7 @@ public class UserControllerTests {
 
         //When&Then
 
-        mockMvc.perform(get("/v1/bigbet/user/" + login + "/" + password).contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/v1/users/" + login + "/" + password).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.user.id", is(user.getId()), Long.class))
                 .andExpect(jsonPath("$.message", is(message)));
@@ -92,11 +92,11 @@ public class UserControllerTests {
         String jsonContent = gson.toJson(userDto);
 
         //When & Then
-        mockMvc.perform(post("/v1/bigbet/user").contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(post("/v1/users").contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(jsonContent))
                 .andExpect(status().isOk())
-                //.andExpect(jsonPath("$.user.id", is(user.getId()), Long.class))
+                .andExpect(jsonPath("$.user.id", is(user.getId()), Long.class))
                 .andExpect(jsonPath("$.message", is(message)));
     }
 
@@ -114,7 +114,7 @@ public class UserControllerTests {
         when(mapper.mapToUserDto(user)).thenReturn(userDto);
 
         //When & Then
-        mockMvc.perform(get("/v1/bigbet/user/" + userId).contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/v1/users/" + userId).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(userDto.getId()), Long.class))
                 .andExpect(jsonPath("$.username", is(userDto.getUsername())));
@@ -137,7 +137,7 @@ public class UserControllerTests {
         when(mapper.mapToUserDtoList(anyList())).thenReturn(userDtoList);
 
         //When & Then
-        mockMvc.perform(get("/v1/bigbet/users").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/v1/users").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.userList.[0].id", is(userDto1.getId()), Long.class))
                 .andExpect(jsonPath("$.userList.[0].username", is(userDto1.getUsername())))
@@ -160,13 +160,12 @@ public class UserControllerTests {
         when(mapper.mapToUserDto(user)).thenReturn(userDto);
 
         //When & Then
-        mockMvc.perform(patch("/v1/bigbet/user/" + userId).contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(put("/v1/users/" + userId).contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(newPassword))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(userDto.getId()), Long.class))
                 .andExpect(jsonPath("$.username", is(userDto.getUsername())));
-
     }
 
     @Test
@@ -177,7 +176,7 @@ public class UserControllerTests {
         when(service.checkIfUserExists(login)).thenReturn(true);
 
         //When & Then
-        mockMvc.perform(get("/v1/bigbet/user/check/" + login).contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/v1/users/check/" + login).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", is(true)));
     }
@@ -188,7 +187,7 @@ public class UserControllerTests {
         Long userId = 1L;
 
         //When & Then
-        mockMvc.perform(delete("/v1/bigbet/user/" + userId).contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(delete("/v1/users/" + userId).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
         verify(service, times(1)).deleteUser(userId);

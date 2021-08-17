@@ -70,7 +70,7 @@ public class BetControllerTestSuite {
         when(mapper.mapToBetDtoList(anyList())).thenReturn(bets);
 
         //When & Then
-        mockMvc.perform(get("/v1/bigbet/allBets").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/v1/allBets").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.list", hasSize(2)))
                 .andExpect(jsonPath("$.list[0].id", is(bet1.getId()), Long.class))
@@ -91,7 +91,7 @@ public class BetControllerTestSuite {
 
 
         //When & Then
-        mockMvc.perform(get("/v1/bigbet/bets/1/false").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/v1/bets/1/false").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.list", hasSize(2)))
                 .andExpect(jsonPath("$.list[0].id", is(bet1.getId()), Long.class))
@@ -118,7 +118,7 @@ public class BetControllerTestSuite {
         when(mapper.mapToBet(any(BetDto.class))).thenReturn(bet);
 
         //When & Then
-        mockMvc.perform(post("/v1/bigbet/addBet").contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(post("/v1/addBet").contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(jsonContent))
                 .andExpect(status().isOk());
@@ -133,7 +133,7 @@ public class BetControllerTestSuite {
         Long betId = 1L;
 
         //When & Then
-        mockMvc.perform(delete("/v1/bigbet/" + betId).contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(delete("/v1/" + betId).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
         verify(service, times(1)).deleteBet(betId);

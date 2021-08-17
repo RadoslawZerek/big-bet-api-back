@@ -52,7 +52,7 @@ public class LogInAttemptControllerTest {
 
         //Then & When
 
-        mockMvc.perform(get("/v1/bigbet/login_attampts").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/v1/login_attampts").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].id", is(attempt1.getId()), Long.class))
@@ -74,7 +74,7 @@ public class LogInAttemptControllerTest {
 
         //Then & When
 
-        mockMvc.perform(get("/v1/bigbet/login_attampts/1/false").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/v1/login_attampts/1/false").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].id", is(attempt1.getId()), Long.class))

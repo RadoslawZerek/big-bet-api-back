@@ -61,7 +61,7 @@ public class UserChangeControllerTests {
 
         //Then & When
 
-        mockMvc.perform(get("/v1/bigbet/user_data_changes").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/v1/user_data_changes").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].id", is(change1.getId()), Long.class))
@@ -85,7 +85,7 @@ public class UserChangeControllerTests {
 
         //Then & When
 
-        mockMvc.perform(get("/v1/bigbet/user_data_changes/1").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/v1/user_data_changes/1").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].id", is(change1.getId()), Long.class))
@@ -109,7 +109,7 @@ public class UserChangeControllerTests {
 
         //Then & When
 
-        mockMvc.perform(get("/v1/bigbet/user_balance_changes").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/v1/user_balance_changes").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].id", is(change1.getId()), Long.class))
@@ -133,7 +133,7 @@ public class UserChangeControllerTests {
 
         //Then & When
 
-        mockMvc.perform(get("/v1/bigbet/user_balance_changes/1").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/v1/user_balance_changes/1").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].id", is(change1.getId()), Long.class))

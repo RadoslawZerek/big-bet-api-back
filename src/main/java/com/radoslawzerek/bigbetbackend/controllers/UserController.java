@@ -15,13 +15,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/v1/bigbet")
+@RequestMapping("/v1")
 @CrossOrigin(origins = "*")
 public class UserController {
 
@@ -31,18 +32,18 @@ public class UserController {
     @Autowired
     private final UserMapper mapper;
 
-    @GetMapping("/user/{login}/{password}")
+    @GetMapping("/users/{login}/{password}")
     public LogInFeedback logUserIn(@PathVariable String login, @PathVariable String password) {
         return service.logUserIn(login, password);
     }
 
 
-    @PostMapping("/user")
+    @PostMapping("/users")
     public SignUpFeedback signUserUp(@RequestBody UserDto user) {
         return service.signUserUp(mapper.mapToUser(user));
     }
 
-    @GetMapping("/user/{userId}")
+    @GetMapping("/users/{userId}")
     public UserDto getUserById(@PathVariable Long userId) throws UserNotFoundException {
         return mapper.mapToUserDto(service.getUserById(userId));
     }
@@ -52,22 +53,22 @@ public class UserController {
         return new UserDtoList(mapper.mapToUserDtoList(service.getAllUsers()));
     }
 
-    @PatchMapping("/users")
+    @PutMapping("/users")
     public UserDto updateUser(@RequestBody UserDto user) throws UserNotFoundException {
         return mapper.mapToUserDto(service.updateUser(mapper.mapToUser(user)));
     }
 
-    @PatchMapping("/user/{userId}")
+    @PutMapping("/users/{userId}")
     public UserDto updateUserPassword(@PathVariable Long userId, @RequestBody String newPassword) throws UserNotFoundException {
         return mapper.mapToUserDto(service.updateUserPassword(userId, newPassword));
     }
 
-    @GetMapping("/user/check/{login}")
+    @GetMapping("/users/check/{login}")
     public Boolean checkIfUserExists(@PathVariable String login) {
         return service.checkIfUserExists(login);
     }
 
-    @DeleteMapping("/user/{userId}")
+    @DeleteMapping("/users/{userId}")
     public void deleteUser(@PathVariable Long userId) {
         service.deleteUser(userId);
     }

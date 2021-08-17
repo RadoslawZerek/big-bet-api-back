@@ -19,7 +19,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/v1/bigbet")
+@RequestMapping("/v1")
 @CrossOrigin(origins = "*")
 public class BetController {
 

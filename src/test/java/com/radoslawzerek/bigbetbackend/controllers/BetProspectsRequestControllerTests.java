@@ -21,6 +21,7 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -57,7 +58,7 @@ public class BetProspectsRequestControllerTests {
 
         //Then & When
 
-        mockMvc.perform(get("/v1/bigbet/requests").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/v1/requests").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].id", is(request1.getId()), Long.class))
@@ -83,7 +84,7 @@ public class BetProspectsRequestControllerTests {
 
         //Then & When
 
-        mockMvc.perform(get("/v1/bigbet/bet_prospect_for_user/1").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/v1/betprospectsrequests/1").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].id", is(request1.getId()), Long.class))

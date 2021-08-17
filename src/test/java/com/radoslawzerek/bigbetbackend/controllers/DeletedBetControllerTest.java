@@ -60,7 +60,7 @@ public class DeletedBetControllerTest {
 
         //Then & When
 
-        mockMvc.perform(get("/v1/bigbet/deleted_bets").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/v1/deleted_bets").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].id", is(deletedBet1.getId()), Long.class))
@@ -87,7 +87,7 @@ public class DeletedBetControllerTest {
 
         //Then & When
 
-        mockMvc.perform(get("/v1/bigbet/deleted_bets/1").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/v1/deleted_bets/1").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].id", is(deletedBet1.getId()), Long.class))
